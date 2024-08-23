@@ -219,7 +219,7 @@ echo "Tidak dapat memperoleh informasi untuk IP $ip_address" | tee -a b.csv
 fi
 sleep 1
 done < "a.csv"
-grep 'ACTIVE' b.csv | head -n 10 >> cdnIP.csv
+grep 'ACTIVE' b.csv > cdnIP.csv
 echo
 echo "IP proxy dengan status proxy ALIVE sebagai berikut:"
 cat cdnIP.csv
@@ -228,7 +228,7 @@ cat cdnIP.csv
 ipcdn2(){
 rm -rf cdnIP.csv
 {
-  grep 'ACTIVE' ip.csv | head -n 10
+  grep 'ACTIVE' > ip.csv
   echo
 } >> cdnIP.csv
 echo
