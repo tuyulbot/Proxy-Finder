@@ -211,15 +211,14 @@ rm -rf cdnIP.csv b.csv a.csv
 awk -F ',' 'NR>1 && NR<=101 {print $1}' result.csv > a.csv
 while IFS= read -r ip_address; do
 UA_Browser="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36"
-response=$(curl -s --user-agent "${UA_Browser}" "https://api.kominfo.us.kg/api?ip=$ip_address" -k | jq -r '.proxyStatus')
+response=$(curl -s --user-agent "${UA_Browser}" "https://api.kominfo.us.kg/api?ip=$ip_address" -k | jq -r '"Proxy Status: \(.proxyStatus), ISP: \(.isp), Country Code: \(.countryCode)"')
 if [ $? -eq 0 ]; then
-echo "IP $ip_address Status Proxy : $response" | tee -a b.csv
+echo "IP $ip_address $response" | tee -a b.csv
 else
-echo "Tidak dapat memperoleh informasi daerah untuk IP $ip_address" | tee -a b.csv
+echo "Tidak dapat memperoleh informasi untuk IP $ip_address" | tee -a b.csv
 fi
 sleep 1
 done < "a.csv"
-grep 'DEAD' b.csv | head -n 10 >> cdnIP.csv
 grep 'ALIVE' b.csv | head -n 10 >> cdnIP.csv
 echo
 echo "IP proxy terbaik di daerah anda adalah sebagai berikut:"
@@ -229,8 +228,6 @@ cat cdnIP.csv
 ipcdn2(){
 rm -rf cdnIP.csv
 {
-  grep 'DEAD' ip.csv | head -n 10
-  echo
   grep 'ALIVE' ip.csv | head -n 10
   echo
 } >> cdnIP.csv
