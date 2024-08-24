@@ -61,7 +61,7 @@ fi
 
 gfip(){
 if [ ! -f cfcdnip ]; then
-curl -L -o cfcdnip -# --retry 2 https://github.com/SonzaiEkkusu/Proxy-Finder/raw/main/tools/linux/linux-$cpu
+curl -L -o cfcdnip -# --retry 2 https://github.com/SonzaiEkkusu/Proxy-Finder/raw/main/tools/linux/cfst/linux-$cpu
 chmod +x cfcdnip
 fi
 echo "1、Pilih IPV4 resmi CF"
