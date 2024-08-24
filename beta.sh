@@ -23,22 +23,25 @@ cpu="arm64a"
 fi
 else
 case "$(uname -m)" in
-	x86_64 | x64 | amd64 )
-	cpu=amd64
-	;;
-	i386 | i686 )
+    x86_64 )
+        cpu=x86_64
+        ;;
+    x64 | amd64 )
+        cpu=amd64
+        ;;
+    i386 | i686 )
         cpu=386
-	;;
-	armv8 | armv8l | arm64 | aarch64 )
+        ;;
+    armv8 | armv8l | arm64 | aarch64 )
         cpu=arm64
-	;;
- 	armv7l )
+        ;;
+    armv7l )
         cpu=arm
-	;;
-	* )
-	echo "Arsitektur saat ini adalah $(uname -m), belum didukung."
-	exit
-	;;
+        ;;
+    * )
+        echo "Arsitektur saat ini adalah $(uname -m), belum didukung."
+        exit
+        ;;
 esac
 fi
 # Memeriksa dan menginstal paket yang diperlukan
