@@ -177,10 +177,10 @@ echo "Apakah ingin menguji kecepatan? (Pilih 1 untuk uji kecepatan, tekan Enter 
 read -p "Silakan pilih: " menu
 [[ $point =~ 2053|2083|2087|2096|8443|443 ]] && tls=true || tls=false
 if [ -z $menu ]; then
-./cfcdnip -tls=$tls -speedtest=0 -max=2 -port=$point
+./cfcdnip -tp $point -dn 10 -dt 10 -p 10
 elif [ "$menu" == "1" ];then
 speedtestrul
-./cfcdnip -tls=$tls -speedtest=1 -max=2 -port=$point -url=$URL
+./cfcdnip -tp $point -sl 2-dn 10 -dt 10 -p 10 -url $URL
 else 
 exit
 fi
@@ -193,10 +193,10 @@ echo "Apakah ingin menguji kecepatan? (Pilih 1 untuk uji kecepatan, tekan Enter 
 read -p "Silakan pilih: " menu
 [[ $point =~ 2053|2083|2087|2096|8443|443 ]] && tls=true || tls=false
 if [ -z $menu ]; then
-./cfcdnip -tls=$tls -speedtest=0 -max=60 -port=$point
+./cfcdnip -tp $point -dn 10 -dt 10 -p 10
 elif [ "$menu" == "1" ];then
 speedtestrul
-./cfcdnip -tls=$tls -max=60 -port=$point -url=$URL
+./cfcdnip -tp $point -sl 2 -dn 10 -dt 10 -p 10 -url $URL
 else 
 exit
 fi
